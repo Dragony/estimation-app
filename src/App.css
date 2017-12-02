@@ -27,7 +27,7 @@
 
 .App-estimation-table th{
   padding: .8rem .4rem;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .App-estimation-table tr:nth-child(even){
@@ -67,7 +67,7 @@ input{
 }
 
 .App-estimation-table tr.total-row td{
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .estimation-delete{

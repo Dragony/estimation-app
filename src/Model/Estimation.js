@@ -36,7 +36,7 @@ class Estimation{
         this.state = {
             ...this.state,
             ...estimates,
-            totalEst: Math.round((estimates.minEst + estimates.optEst * 4 + estimates.maxEst) / 6 * 10)/10
+            totalEst: Math.round((estimates.minEst + estimates.optEst * 2 + estimates.maxEst) / 4 * 10)/10
         };
         this.triggerListener('update');
     }
