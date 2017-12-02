@@ -1,0 +1,36 @@
+.App{
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.App-Header{
+  display: inline-block;
+  text-align: center;
+}
+
+.App-estimation-table{
+  margin: 0 auto;
+  text-align: left;
+  width: 100%;
+}
+
+.App-estimation-table tr th:first-child{
+  min-width: 20rem;
+}
+
+.App-estimation-table .totalEst{
+  text-align: center;
+  font-size: 1em;
+}
+
+input{
+  border: 0;
+  border-bottom: 1px #222 solid;
+  padding: .2rem;
+  font-size: 1em;
+}
+
+.App-estimation-input{
+  width: 2rem;
+  text-align: center;
+}
