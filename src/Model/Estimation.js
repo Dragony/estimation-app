@@ -21,7 +21,6 @@ class Estimation{
         this.listeners[type].push(listener);
     }
     triggerListener(type){
-        console.log('triggering', type, this.listeners[type]);
         if(this.listeners[type] === undefined){
             return;
         }

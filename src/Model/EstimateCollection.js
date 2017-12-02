@@ -29,7 +29,7 @@ class EstimateCollection{
     getTotalEstimated(){
         let totalEst = 0;
         this.elements.map(el => totalEst += el.state.totalEst);
-        return totalEst;
+        return Math.round(totalEst*100)/100;
     }
 }
 
