@@ -8,18 +8,24 @@ class Estimation{
             totalEst: 0,
             ...defaults
         };
-        this.listeners = [];
+        this.listeners = {};
     }
     updateEstimate(update){
         this.state = {...this.state, ...update};
-        console.log(this.state);
         this.updateValues();
     }
-    addListener(listener){
-        this.listeners.push(listener);
+    addListener(type, listener){
+        if(this.listeners[type] === undefined){
+            this.listeners[type] = [];
+        }
+        this.listeners[type].push(listener);
     }
-    triggerListener(){
-        this.listeners.map(fn => fn());
+    triggerListener(type){
+        console.log('triggering', type, this.listeners[type]);
+        if(this.listeners[type] === undefined){
+            return;
+        }
+        this.listeners[type].map(fn => fn(this));
     }
     updateValues(){
         let estimates = {
@@ -33,7 +39,10 @@ class Estimation{
             ...estimates,
             totalEst: Math.round((estimates.minEst + estimates.optEst * 4 + estimates.maxEst) / 6 * 10)/10
         };
-        this.triggerListener();
+        this.triggerListener('update');
+    }
+    remove(){
+        this.triggerListener('remove');
     }
 }
 

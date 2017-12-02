@@ -12,6 +12,21 @@
   margin: 0 auto;
   text-align: left;
   width: 100%;
+  border-collapse: collapse;
+}
+
+.App-estimation-table td{
+  padding: 1rem .4rem;
+  margin: 0;
+}
+
+.App-estimation-table th{
+  padding: .8rem .4rem;
+  font-weight: normal;
+}
+
+.App-estimation-table tr:nth-child(even){
+  background-color: #eee;
 }
 
 .App-estimation-table tr th:first-child{
@@ -28,9 +43,28 @@ input{
   border-bottom: 1px #222 solid;
   padding: .2rem;
   font-size: 1em;
+  background: transparent;
 }
 
 .App-estimation-input{
   width: 2rem;
   text-align: center;
+}
+
+.App-estimation-table thead tr{
+  background-color: #474747;
+  color: white;
+}
+
+.App-estimation-table tr.total-row{
+  background: black;
+  color: white;
+}
+
+.App-estimation-table tr.total-row td{
+  font-weight: bold;
+}
+
+.estimation-delete{
+  cursor: pointer;
 }
