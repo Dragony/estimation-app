@@ -3,7 +3,9 @@ import EstimationRow from './Table/EstimationRow.js';
 import EstimationCollection from './Model/EstimateCollection';
 import Estimation from './Model/Estimation';
 import AddEstimation from './Table/AddEstimation';
+import TextExport from './TextExport/TextExport';
 import './App.css';
+import './TextExport/TextExport.css';
 
 class App extends Component {
     constructor(props){
@@ -47,6 +49,7 @@ class App extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <TextExport col={this.col}/>
             </div>
         );
     }

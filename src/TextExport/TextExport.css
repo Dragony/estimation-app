@@ -1,0 +1,9 @@
+#textExport{
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+}
+
+.text-export{
+    margin-top: 5rem;
+}

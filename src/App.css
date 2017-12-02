@@ -1,6 +1,6 @@
 .App{
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .App-Header{
@@ -12,7 +12,12 @@
   margin: 0 auto;
   text-align: left;
   width: 100%;
+  box-sizing: border-box;
   border-collapse: collapse;
+}
+
+.App-estimation-table *{
+  box-sizing: border-box;
 }
 
 .App-estimation-table td{
