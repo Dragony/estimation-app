@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
-import EstimationRow from './Table/EstimationRow.js';
-import EstimationCollection from './Model/EstimateCollection';
-import Estimation from './Model/Estimation';
+import EstimationList from './Model/EstimationList.mjs';
+import EstimationRow from './Table/EstimationRow';
 import AddEstimation from './Table/AddEstimation';
 import TextExport from './TextExport/TextExport';
+import UpdateQueue from './Api/UpdateQueue.mjs';
 import './App.css';
 import './TextExport/TextExport.css';
 
 class App extends Component {
     constructor(props){
         super(props);
-        let els = [
-            new Estimation({ description: "Create layout" }),
-            new Estimation({ description: "Programm frontend" }),
-            new Estimation({ description: "Programm backend" }),
-            new Estimation({ description: "Deployment" })
-        ];
-        this.col = new EstimationCollection(els, this.forceUpdate.bind(this));
+        this.list = new EstimationList(this.onUpdate.bind(this));
+        this.list.populate(this.props.listData);
+        this.col = this.list.getCollection();
+        this.queue = new UpdateQueue(this.props.listData.uuid);
+    }
+    onUpdate(){
+        this.queue.add(this.list.toJson(), this.list.updateIds.bind(this.list));
+        this.forceUpdate();
     }
     render() {
         let estimationRows = this.col.all().map(function(estimation, k){
@@ -26,7 +27,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <h2>Help estimate</h2>
-                    <h1 className="App-title">New estimation App</h1>
+                    <h1 className="App-title">{this.list.title}</h1>
                 </header>
                 <table className="App-estimation-table">
                     <thead>
@@ -49,7 +50,7 @@ class App extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <TextExport col={this.col}/>
+                <TextExport list={this.list}/>
             </div>
         );
     }

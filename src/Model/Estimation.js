@@ -9,6 +9,7 @@ class Estimation{
             ...defaults
         };
         this.listeners = {};
+        this.updateValues();
     }
     updateEstimate(update){
         this.state = {...this.state, ...update};
@@ -42,6 +43,15 @@ class Estimation{
     }
     remove(){
         this.triggerListener('remove');
+    }
+    toJson(){
+        return this.state;
+    }
+    mergeValues(newValues){
+        this.state = {
+            ...this.state,
+            ...newValues,
+        }
     }
 }
 

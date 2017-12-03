@@ -21,21 +21,35 @@ async function handlePostRequest(req, res){
     if(req.body.title){
         prevEst.title = req.body.title;
     }
-    req.body.estimations.forEach(async function(estimationData){
-        let estimationModel;
-        if(estimationData.id){
-            estimationModel = await EstimationRow.findById(estimationData.id);
-            if(estimationModel){
-                estimationModel.update(estimationData);
+    if(req.body.estimationRow){
+        let estimationIdMap = [];
+        let newEstimations = [];
+        for(let i in req.body.estimationRow) {
+            if(!req.body.estimationRow[i].id){
+                newEstimations.push(req.body.estimationRow[i]);
+            }else{
+                estimationIdMap[req.body.estimationRow[i].id] = req.body.estimationRow[i];
             }
         }
-        if(!estimationModel){
-            estimationData.estimationId = prevEst.id;
-            estimationModel = await EstimationRow.create(estimationData);
+        let estimations = await prevEst.getEstimationRow();
+        console.log('num estimations', estimations.length);
+        for(let k in estimations){
+            if(estimations.hasOwnProperty(k)){
+                let estimation = estimations[k];
+                console.log('updating', estimationIdMap[estimation.id]);
+                estimation.update(estimationIdMap[estimation.id]);
+            }
         }
-        await estimationModel.save();
-    });
-    prevEst.save();
+        for(let i in newEstimations){
+            let newEstimation = await EstimationRow.create(newEstimations[i]);
+            prevEst.addEstimationRow(newEstimation);
+        }
+
+    }
+    await prevEst.save();
+
+    // Quickfix to reload all the changed data
+    prevEst = await findEstimationByUuid(req.params.uuid);
     res.json(serialize(prevEst));
 }
 

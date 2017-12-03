@@ -7,9 +7,9 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.redirect(302, uuid()));
+app.get('/api/new', (req, res) => res.redirect(302, '/api/' + uuid()));
 app.get('/favicon.ico', (req, res) => res.send('Nothing here'));
-app.get('/:uuid', handleGetRequest);
-app.post('/:uuid', handlePostRequest);
+app.get('/api/:uuid', handleGetRequest);
+app.post('/api/:uuid', handlePostRequest);
 
-app.listen(3000, () => console.log('running!'));
+app.listen(3001, () => console.log('running!'));
