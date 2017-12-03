@@ -1,0 +1,24 @@
+{
+  "name": "estimation-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules index.mjs",
+    "sync-schema": "node --experimental-modules bin/sync_schema.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql2": "^1.5.1",
+    "sequelize": "^4.24.0",
+    "sequelize-to-json": "^0.10.3",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^3.2.0"
+  }
+}
