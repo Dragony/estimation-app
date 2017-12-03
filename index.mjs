@@ -22,4 +22,4 @@ app.get('/api/:uuid', handleGetRequest);
 app.post('/api/:uuid', handlePostRequest);
 app.get('/:uuid', (req, res) => res.render('index'));
 
-app.listen(3001, () => console.log('running!'));
+app.listen(process.env.PORT || 3001, () => console.log('running!'));
