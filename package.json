@@ -1,23 +1,25 @@
 {
-  "name": "estimation-app",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": {
-    "/api/*": {
-      "target": "http://localhost:3001"
-    }
-  },
-  "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17",
-    "concurrently": "^3.5.1"
-  },
+  "name": "estimation-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd server && npm start\"",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "postinstall": "cd server && npm install"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules index.mjs",
+    "sync-schema": "node --experimental-modules bin/sync_schema.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mysql2": "^1.5.1",
+    "sequelize": "^4.24.0",
+    "sequelize-to-json": "^0.10.3",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^3.2.0"
   }
 }
