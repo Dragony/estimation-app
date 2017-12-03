@@ -32,11 +32,9 @@ async function handlePostRequest(req, res){
             }
         }
         let estimations = await prevEst.getEstimationRow();
-        console.log('num estimations', estimations.length);
         for(let k in estimations){
             if(estimations.hasOwnProperty(k)){
                 let estimation = estimations[k];
-                console.log('updating', estimationIdMap[estimation.id]);
                 estimation.update(estimationIdMap[estimation.id]);
             }
         }
@@ -65,4 +63,16 @@ async function findEstimationByUuid(uuid){
     });
 }
 
-export { handleGetRequest, handlePostRequest }
+async function handleEstimationDeleteRequest(req, res){
+    console.log('delete', req.body);
+    await EstimationRow.destroy({
+        where: {
+            id: req.body.id
+        }
+    });
+    res.json({
+        status: true
+    })
+}
+
+export { handleGetRequest, handlePostRequest, handleEstimationDeleteRequest }

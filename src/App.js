@@ -16,6 +16,7 @@ class App extends Component {
         this.queue = new UpdateQueue(this.props.listData.uuid);
     }
     onUpdate(){
+        //@todo: move this somewhere else. it triggers a redownload of the state ofter every delete
         this.queue.add(this.list.toJson(), this.list.updateIds.bind(this.list));
         this.forceUpdate();
     }

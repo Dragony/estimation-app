@@ -21,7 +21,10 @@ class EstimationList{
         let collection = this.collection;
         if(backendData.estimationRow){
             backendData.estimationRow.forEach(function(estimation, k){
-                collection.elements[k].mergeValues(estimation);
+                // Could already have been deleted
+                if(collection.elements[k]){
+                    collection.elements[k].mergeValues(estimation);
+                }
             });
         }
     }

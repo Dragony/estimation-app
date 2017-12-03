@@ -1,3 +1,5 @@
+import Backend from './../Api/Backend.mjs';
+
 class EstimateCollection{
     constructor(elements, listener){
         this.elements = elements || [];
@@ -23,6 +25,7 @@ class EstimateCollection{
     }
     removeListener(el){
         let idx = this.elements.indexOf(el);
+        Backend.deleteEstimation(el.toJson());
         this.elements.splice(idx, 1);
         this.updateListener();
     }

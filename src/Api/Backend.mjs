@@ -13,6 +13,14 @@ class Backend{
         });
         return res.json();
     }
+    static async deleteEstimation(json){
+        let res = await fetch('/api/delete-estimation', {
+            method: 'POST',
+            headers: new Headers({'content-type': 'application/json'}),
+            body: JSON.stringify(json)
+        });
+        return res.json();
+    }
 }
 
 export default Backend;
