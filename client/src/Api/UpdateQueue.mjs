@@ -19,7 +19,9 @@ class UpdateQueue{
         if(this.isChanged){
             this.isChanged = false;
             let newState = await Backend.postEstimationState(this.uuid, this.state);
-            this.callbacks.forEach((cb) => cb(newState));
+            // Only callback with the new state if the app hasn't already changed the state again
+            // The best strategy is to merge the changes, but that isn't simple
+            this.callbacks.forEach((cb) => this.isChanged ? cb(newState) : null);
         }
     }
 }
