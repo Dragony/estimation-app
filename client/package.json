@@ -6,7 +6,7 @@
   "dependencies": {
     "concurrently": "^3.5.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.13.0",
     "react-scripts": "1.0.17",
     "whatwg-fetch": "^2.0.3"
   },
@@ -19,7 +19,6 @@
   "browserslist": {
     "production": [
       ">0.2%",
-      "not dead",
       "not op_mini all"
     ],
     "development": [
