@@ -5,7 +5,7 @@ class UpdateQueue{
         this.uuid = uuid;
         this.state = {};
         this.isChanged = false;
-        this.interval = setInterval(this.send.bind(this), 1000);
+        this.interval = setInterval(this.send.bind(this), 500);
         this.callbacks = [];
     }
     add(state, cb){
@@ -21,7 +21,10 @@ class UpdateQueue{
             let newState = await Backend.postEstimationState(this.uuid, this.state);
             // Only callback with the new state if the app hasn't already changed the state again
             // The best strategy is to merge the changes, but that isn't simple
-            this.callbacks.forEach((cb) => this.isChanged ? cb(newState) : null);
+            this.callbacks.forEach((cb) => cb(newState));
+
+            // Reset callback after calling them all.
+            this.callbacks = [];
         }
     }
 }
