@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser'
-import uuid from 'uuid/v4';
+import uuidPackage from 'uuid';
+const { v4 } = uuidPackage;
 import ejs from 'ejs';
 import { handleGetRequest, handlePostRequest, handleEstimationDeleteRequest } from './Page/EstimationPage.mjs';
 
@@ -14,8 +15,8 @@ app.engine('html', ejs.renderFile);
 
 console.log(process.argv[1] + '/client/build/index.html');
 
-app.get('/', (req, res) => res.redirect(302, '/' + uuid()));
-app.get('/api/new', (req, res) => res.redirect(302, '/api/' + uuid()));
+app.get('/', (req, res) => res.redirect(302, '/' + v4()));
+app.get('/api/new', (req, res) => res.redirect(302, '/api/' + v4()));
 app.get('/favicon.ico', (req, res) => res.send('Nothing here'));
 app.post('/api/delete-estimation', handleEstimationDeleteRequest);
 app.get('/api/:uuid', handleGetRequest);
